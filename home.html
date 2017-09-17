@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Shows</title>
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <div class="headerBlock"> </div>
+     <div class="headerBlock header">
+                <img src="img/FinalLogo512px.png"><span class="headerTitle">ShowsAround</span>
+                <div><select id="areaSelect"><option value="כל האזורים">כל האזורים</option><option value="דרום">דרום</option><option value="צפון">צפון</option><option value="תל אביב">תל אביב</option><option value="מרכז">מרכז</option><option value="שרון">שרון</option><option value="פסטיבל ערד">פסטיבל ערד</option></select></div>
+   </div>		
+		<div id="pageContent">
+        <h1>Shows here</h1>
+        <div id="showsContainer"></div>
+    </div>
+
+	
+	<script  id="showTemplate" type="text/x-jQuery-tmpl">
+	
+         <div>
+            <div class="issueCard" onclick="showClick(this)">
+                <div class="issueCardImage" style="background-image:url('${image}')"></div><div class="issueCardImage issueCardImageVisible" style="background-image:url('${image}')"></div><!--image in images-->
+
+                <div class="issueCardContent">
+                    <div class="issueCardTitleArea">
+                        <div class="issueCardDetails issueCardDetailsTop ">
+                            <div class="">${date}</div>
+                        </div>
+                        <div class="issueCardTitle  " a="">
+                            •&nbsp; ${artist}
+                        </div><div class="issueCardTitle  " a="">
+                            •&nbsp;${artist}
+                        </div><!--name in artist-->
+                    </div>
+                    <div class="issueCardLocation">
+                        ${hour}, ${where}
+
+                    </div>
+                    <div class="issueCardDetails issueCardDetailsBottomRight">
+                        <div class="">${price}</div>
+                    </div>
+                    <div  class="issueCardDetails issueCardDetailsBottomRight issueCardDetailsBottomPinned" style="display: none;">
+                       <img src="img/FinalLogo32px.png"><span>ארוע מיוחד!</span>
+                    </div>
+
+                </div>
+
+                <!-- PLACE FILLER - as actuall content in position absolute, we need in-layout content to push the card size -->
+                <div class="issueCardTitleArea">
+                    <div class="issueCardTitle">
+                        &nbsp;
+                    </div><div class="issueCardTitle">
+                        &nbsp;
+                    </div><!--name in artist-->
+                </div>
+                <div class="issueCardLocation">
+                </div>
+
+            </div>
+            <div class="eventDetails  eventDetailsShow" onclick="showClick(this)">
+                <div>
+                    ${hour}20:00
+                </div>
+                ${description}
+            </div>
+        </div>
+	</script>
+	
+ 
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+ 
+    <script type="text/javascript">
+        // Create an array of books
+        var shows = [
+            { date: "היום, שני", artist:"ליאור נרקיס",hour: "20:00",where:"טיילת קניון מול הים אילת",price:"חינם",description:" יהודה קיסר וליאור נרקיס בהופעה מיוחדת בערב הפתיחה של פסטיבל לילות קיץ בים האדום, בטיילת קניון מול הים באילת",image: "img/placeholder.png" },
+            { date: "היום, שני", artist:"ליאור נרקיס",hour: "20:00",where:"טיילת קניון מול הים אילת",price:"חינם",description:" יהודה קיסר וליאור נרקיס בהופעה מיוחדת בערב הפתיחה של פסטיבל לילות קיץ בים האדום, בטיילת קניון מול הים באילת",image: "img/placeholder.png" },
+        ];
+ 
+        // Render the books using the template
+        $("#showTemplate").tmpl(shows).appendTo("#showsContainer");
+ 
+        function formatPrice(price) {
+            return "$" + price.toFixed(2);
+        }
+		
+		
+			function showClick(element){
+				if (element.style.display === 'none') {
+						element.style.display = 'block';
+					} else {
+						element.style.display = 'none';
+					}
+				
+			}
+ 
+    </script>
+	
+	</body>
+</html>
